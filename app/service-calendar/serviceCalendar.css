@@ -1,0 +1,21 @@
+.service-day-blocked {
+    background-image:
+        linear-gradient(to top right, transparent calc(50% - 1px), #AEB4BC calc(50% - 1px) calc(50% + 1px), transparent calc(50% + 1px)),
+        linear-gradient(to bottom right, transparent calc(50% - 1px), #AEB4BC calc(50% - 1px) calc(50% + 1px), transparent calc(50% + 1px));
+}
+
+.service-cancel-marker {
+    background: radial-gradient(circle, rgba(38, 42, 50, .62) 1.3px, transparent 1.6px) -0.5px 50% / 5px 3px repeat-x;
+}
+
+.service-rbc .rbc-month-view { border: 0; }
+.service-rbc .rbc-header { border: 0; padding: 0 0 3px; font-size: 10px; font-weight: 600; color: #8A8F98; }
+.service-rbc .rbc-month-row { flex-basis: 40px; min-height: 40px; border: 0; overflow: visible; }
+.service-rbc .rbc-row-bg { display: flex; }
+.service-rbc .rbc-day-bg + .rbc-day-bg { border-left: 0; }
+.service-rbc .rbc-day-bg.border-l-4 { border-left: 4px solid var(--svc); }
+.service-rbc .rbc-month-row + .rbc-month-row { border-top: 0; }
+.service-rbc .rbc-header + .rbc-header { border-left: 0; }
+.service-rbc .rbc-row-content { pointer-events: none; }
+.service-rbc .rbc-off-range-bg-hidden { background: transparent; }
+.service-rbc .rbc-today { background: inherit; }
