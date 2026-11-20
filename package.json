@@ -1,5 +1,5 @@
 {
-  "name": "service-calendar-poc",
+  "name": "poc-calendar",
   "private": true,
   "type": "module",
   "scripts": {

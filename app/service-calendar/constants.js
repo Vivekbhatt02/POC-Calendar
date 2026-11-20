@@ -7,22 +7,22 @@ export const FIRST_SUPPORTED_YEAR = 2026;
 export const DAY_OF_MONTH_OPTIONS = Array.from({length: 28}, (_, index) => index + 1);
 
 export const SERVICE_KEYCODES = {
-    ABCO: 'ABCO',
-    CFKO: 'CFKO'
+    SERVICE_A: 'SERVICE_A',
+    SERVICE_B: 'SERVICE_B'
 };
 
 export const SERVICES = {
-    [SERVICE_KEYCODES.ABCO]: {
-        keycode: SERVICE_KEYCODES.ABCO,
-        name: 'ABC Online',
-        shortName: 'ABC',
+    [SERVICE_KEYCODES.SERVICE_A]: {
+        keycode: SERVICE_KEYCODES.SERVICE_A,
+        name: 'Service A',
+        shortName: 'SA',
         accentColor: '#4C5575',
         lessonsPerWeekday: [0, 6, 8, 18, 2, 13, 4]
     },
-    [SERVICE_KEYCODES.CFKO]: {
-        keycode: SERVICE_KEYCODES.CFKO,
-        name: 'CFK Online',
-        shortName: 'CFK',
+    [SERVICE_KEYCODES.SERVICE_B]: {
+        keycode: SERVICE_KEYCODES.SERVICE_B,
+        name: 'Service B',
+        shortName: 'SB',
         accentColor: '#BC7E7A',
         lessonsPerWeekday: [0, 36, 30, 22, 20, 6, 0]
     }

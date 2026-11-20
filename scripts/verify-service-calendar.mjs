@@ -128,14 +128,14 @@ try {
   check("panel stamps December as generated today", await panel.locator('[data-cycle="2026-12-01"]').getByText(/Generated 5 Nov/).count() === 1);
   await shot("4-generated-december");
 
-  await page.getByRole("button", { name: /CFK Online/ }).click();
-  check("switching service redraws with CFK cycles", await panel.locator('[data-cycle="2026-07-28"]').count() === 1);
+  await page.getByRole("button", { name: /Service B/ }).click();
+  check("switching service redraws with Service B cycles", await panel.locator('[data-cycle="2026-07-28"]').count() === 1);
   const yearStart = Date.now();
   await page.getByRole("button", { name: "Next year" }).click();
   await page.getByText("January 2028", { exact: true }).waitFor();
   console.log(`TIMING year switch ${Date.now() - yearStart} ms including automation round-trip`);
   check("year stepper moves to 2027", (await page.getByTestId("year").textContent()) === "2027" && await page.getByText("January 2028", { exact: true }).count() === 1);
-  await shot("5-cfk-2027");
+  await shot("5-service-b-2027");
 } finally {
   check("no page errors", errors.length === 0, errors.slice(0, 2).join(" || "));
   await browser.close();

@@ -1,14 +1,14 @@
-# Calendar library POC
+# POC Calendar
 
-The app is a plain Vite app on React 18.3.1, the same React version as BackOffice. `index.html` loads `app/main.jsx`, which reads `?lib=` and `?today=` and renders `ServiceCalendarPage`.
+The app is a plain Vite app on React 18.3.1, the same React version as the main app. `index.html` loads `app/main.jsx`, which reads `?lib=` and `?today=` and renders `ServiceCalendarPage`.
 
-This POC rebuilds the Service Calendar screen from `Subscriptions_Mockup_v8.html#cal` on the two finalist libraries, MUI X DateCalendar and react-big-calendar. The findings are in [EVALUATION.md](EVALUATION.md).
+This POC rebuilds the Service Calendar screen from the calendar mockup on the two finalist libraries, MUI X DateCalendar and react-big-calendar. The findings are in [EVALUATION.md](EVALUATION.md).
 
 The code lives in `app/service-calendar/`:
 
 - `calendarRules.js` derives cycles, statuses, enrolment windows, edit locks, and day cells from a schedule. It has no UI code.
 - `calendarReducer.js` applies edit commands and returns the notice text.
-- `seedData.js` holds the ABC Online and CFK Online schedules copied from the mockup.
+- `seedData.js` holds the Service A and Service B schedules copied from the mockup.
 - `ServiceCalendarPage.jsx` renders the page. The year grid comes from `grids/`, one file per library, picked by `?lib=`. `DayCell.jsx` holds the day classes and content that every grid shares.
 - `MonthCyclesPanel.jsx`, `EnrolmentDialog.jsx`, and `CalendarLegend.jsx` render the side panel, the enrolment dialog, and the legend.
 
@@ -26,13 +26,13 @@ Both libraries render the same screen from the same rules and pass the same chec
 | Styling | `sx` objects. No conflicts with our classes | Its unlayered stylesheet overrode Tailwind classes. `serviceCalendar.css` overrides its borders |
 | Month titles and divider | Our own, drawn by `YearLayout.jsx` | Our own, drawn by `YearLayout.jsx` |
 | Library chunk, gzipped | 58 KB | 74 KB, including luxon |
-| New packages in BackOffice | None. BackOffice already uses MUI 9, `@mui/x-date-pickers`, and moment | `react-big-calendar` and its dependencies, including lodash, luxon, and globalize |
+| New packages in the main app | None. The main app already uses MUI 9, `@mui/x-date-pickers`, and moment | `react-big-calendar` and its dependencies, including lodash, luxon, and globalize |
 | Checks on React 18.3.1 | 23 of 23 in all 7 runs | 23 of 23 in 11 of 14 runs. In 3 runs, one timed click showed no DOM change within 3 seconds, although the day still toggled. Cause not found |
 | Console warnings | None | On React 19, "outdated JSX transform", because its build calls `React.createElement` directly |
 | Keyboard navigation | Lost. Our cells replace `PickerDay`, so we must add our own | Not tested |
 | Timed events later | Not possible. It only picks dates | Possible, with week and day views |
 
-Recommendation: use MUI X DateCalendar. It needs no workarounds, adds no packages to BackOffice, and had no unexplained misses. Choose react-big-calendar only if this screen will later need timed events.
+Recommendation: use MUI X DateCalendar. It needs no workarounds, adds no packages to the main app, and had no unexplained misses. Choose react-big-calendar only if this screen will later need timed events.
 
 ## Run the POC
 

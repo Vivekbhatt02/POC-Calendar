@@ -1,6 +1,6 @@
 # Calendar library evaluation
 
-Use MUI X DateCalendar for the Service Calendar in `Subscriptions_Mockup_v8.html#cal`. It and react-big-calendar both render the screen and pass the same checks on React 18.3.1. MUI X needs no workarounds, adds no packages to BackOffice, and had no unexplained misses. The rest of this document gives the evidence.
+Use MUI X DateCalendar for the Service Calendar in the calendar mockup. It and react-big-calendar both render the screen and pass the same checks on React 18.3.1. MUI X needs no workarounds, adds no packages to the main app, and had no unexplained misses. The rest of this document gives the evidence.
 
 All facts were gathered on 2026-11-20. To reproduce the checks, see [README.md](README.md).
 
@@ -15,7 +15,7 @@ Two libraries were dropped after the first round, and their code has been remove
 
 ## Results on React 18.3.1
 
-The POC is a plain Vite app on React 18.3.1, matching BackOffice. The page reports `React.version`, and the verify script fails unless it is 18.3.1. The numbers come from dev-mode runs under `StrictMode`: 7 runs of MUI X and 14 of react-big-calendar.
+The POC is a plain Vite app on React 18.3.1, matching the main app. The page reports `React.version`, and the verify script fails unless it is 18.3.1. The numbers come from dev-mode runs under `StrictMode`: 7 runs of MUI X and 14 of react-big-calendar.
 
 | | MUI X DateCalendar 9.18 | react-big-calendar 1.20 |
 | --- | --- | --- |
@@ -37,7 +37,7 @@ In 3 of 14 react-big-calendar runs, one of the 12 timed clicks showed no DOM cha
 - The `day` slot receives each date and renders any React content, so Shift-click comes from our own `onClick`.
 - Setting the `calendarHeader` slot to `null` removes the picker header. `YearLayout.jsx` draws the month titles and the "Continues into 2027" divider.
 - Monday-first weeks need a moment locale with `dow: 1`, defined in `grids/mondayLocale.js`. Importing `moment/locale/en-gb` did not work, because Vite's pre-bundled moment is a different instance.
-- BackOffice already depends on `@mui/x-date-pickers` 9.16, `@mui/material` 9, and moment, so the screen adds no new packages there.
+- The main app already depends on `@mui/x-date-pickers` 9.16, `@mui/material` 9, and moment, so the screen adds no new packages there.
 - Because our cell replaces `PickerDay`, the picker's keyboard navigation does not apply. We must add our own.
 
 **react-big-calendar.**
